@@ -21,17 +21,30 @@ public_users.post("/register", (req,res) => {
 
 // Get the book list available in the shop
 public_users.get('/',function (req, res) {
-  res.send(JSON.stringify(books))
+    let myPromise = new Promise((resolve,reject) => {
+    setTimeout(() => {
+      resolve("Promise resolved")
+    },6000)})
+  myPromise(res.send(JSON.stringify(books)))
 });
 
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn',function (req, res) {
+    let myPromise = new Promise((resolve,reject) => {
+        setTimeout(() => {
+            resolve("Promise resolved")
+            },6000)})
   let isbn = req.params.isbn
-  res.send(JSON.stringify(books[isbn]))
+
+  myPromise(res.send(JSON.stringify(books[isbn])))
  });
   
 // Get book details based on author
 public_users.get('/author/:author',function (req, res) {
+    let myPromise = new Promise((resolve,reject) => {
+        setTimeout(() => {
+          resolve("Promise resolved")
+        },6000)})
     let author=req.params.author
     let filteredBooks = []
     for (let key in books) {
@@ -40,13 +53,17 @@ public_users.get('/author/:author',function (req, res) {
         }
         
     }
-    res.send(JSON.stringify(filteredBooks))
+    myPromise(res.send(JSON.stringify(filteredBooks)))
 }
     
 );
 
 // Get all books based on title
 public_users.get('/title/:title',function (req, res) {
+    let myPromise = new Promise((resolve,reject) => {
+        setTimeout(() => {
+          resolve("Promise resolved")
+        },6000)})
     let title=req.params.title
     let filteredBooks = []
     for (let key in books) {
@@ -55,7 +72,7 @@ public_users.get('/title/:title',function (req, res) {
         }
         
     }
-    res.send(JSON.stringify(filteredBooks))
+    myPromise(res.send(JSON.stringify(filteredBooks)))
 });
 
 //  Get book review
